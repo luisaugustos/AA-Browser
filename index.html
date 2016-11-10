@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Allahu Akbar</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+
+    <div class="controls">
+			<ul class="nav nav-tabs" id="tabs">
+				<button type="button" class="btn btn-default" id="open-new-tab"> + </button>
+    		<li class="active">
+					<a data-toggle="tab" href="#home">Home</a>
+				</li>
+  		</ul>
+    </div>
+
+			<div id="conteudo" class="tab-content">
+
+				<div id="home" class="tab-pane fade in active">
+					<input id="new-tab-url" type="text" placeholder="Digite a url">
+		      <button type="button" id="open-page">GO</button>
+	      		<iframe id="webview"></iframe>
+		    </div>
+
+			</div>
+
+      <script>
+        require('./app.js');
+      </script>
+
+			<!-- Insert this line above script imports  -->
+			<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+			<!-- normal script imports etc  -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/bootstrap.min.js"></script>
+
+			<!-- Insert this line after script imports -->
+			<script>if (window.module) module = window.module;</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "AA-Browser",
+  "version": "0.0.1",
+  "description": "A webbrowser implemention using tabs concept, locking a process per tab. ",
+  "main": "main.js",
+  "dependencies": {
+    "electron-prebuilt": "*",
+    "promise": "^7.1.1",
+    "request-promise": "*",
+    "requestify": "^0.2.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webbrowser",
+    "tabs",
+    "multiprocess"
+  ],
+  "author": "Luis Augusto Silva, Patrick de Pieri, Will Gasperi",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-packager": "^8.2.0"
+  }
+}
