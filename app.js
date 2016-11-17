@@ -97,18 +97,27 @@ function createContent(tabName) {
 }
 
 function requestUrl(e) {
+  //Pega URL requisitada, ve se tem http ou nao
   let url = e.target.parentNode.querySelector("#new-tab-url")
   url.value = addHttp(url.value)
-  let tabName = e.target.parentNode.id
-  var tab_process = child_process.fork("tab.js", [url.value], { silent: true });
 
+  // Pega o tabName ou o identificador da ABA
+  let tabName = e.target.parentNode.id
+
+  // Chama um novo processo chamado "tab.js" passa a url requisitada como parametro "url.value"
+  var tab_process = child_process.fork("tab.js", [url.value], { silent: true, env: {"ATOM_SHELL_INTERNAL_RUN_AS_NODE":"0"}});
+
+  // Quando receber uma mensagem, vai para o callbackd
   tab_process.on('message', function (message) {
+
     // Coloca o conteudo resultante da request e coloca dentro da tag <iframe>
     var doc = document.getElementById(tabName).querySelector("#webview").contentWindow.document
     doc.open();
     doc.write(message);
     doc.close();
+
     var re = new RegExp("<title>(.*?)</title>", "i");
+    //var re = new RegExp("<title( *)((id|class)(=\")(.*)(\"))?>(.*)<\/title>", "i");
     if (message.match(re)[1]) {
       document.querySelectorAll("[href='#" + tabName + "']")[0].innerHTML = message.match(re)[1]
     }
